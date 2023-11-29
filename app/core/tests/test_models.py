@@ -11,7 +11,7 @@ from core import models
 
 def create_user(email='test@example.com', password='testpass123'):
     """create and return"""
-    return get_user_model().objects.create_user(email=email,password=password)
+    return get_user_model().objects.create_user(email=email, password=password)
 
 
 class ModelTests(TestCase):

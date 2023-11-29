@@ -120,7 +120,7 @@ class PrivateRecipeApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         recipe = Recipe.objects.get(id=res.data['id'])
-        for k,v in payload.items():
+        for k, v in payload.items():
             self.assertEqual(getattr(recipe, k), v)
         self.assertEqual(recipe.user, self.user)
 
@@ -152,9 +152,9 @@ class PrivateRecipeApiTests(TestCase):
         )
 
         payload = {
-            'title':'New recipe title',
-            'link':'https://example.com/recipe.pdf',
-            'description':'New recipe description',
+            'title': 'New recipe title',
+            'link': 'https://example.com/recipe.pdf',
+            'description': 'New recipe description',
             'time_minutes': 10,
             'price': Decimal('2.50'),
         }
@@ -163,13 +163,13 @@ class PrivateRecipeApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         recipe.refresh_from_db()
-        for k,v in payload.items():
+        for k, v in payload.items():
             self.assertEqual(getattr(recipe, k), v)
         self.assertEqual(recipe.user, self.user)
 
     def test_update_user_returns_error(self):
         """Test changing the recipe user results in an error."""
-        new_user= create_user(
+        new_user = create_user(
             email='otherUser@example.com',
             password='testpass123',
         )
@@ -196,7 +196,7 @@ class PrivateRecipeApiTests(TestCase):
 
     def test_delete_other_users_recipe_error(self):
         """Test trying to delete another users recipe gives error."""
-        new_user= create_user(
+        new_user = create_user(
             email='otherUser@example.com',
             password='testpass123',
         )
@@ -231,7 +231,7 @@ class PrivateRecipeApiTests(TestCase):
             self.assertTrue(exists)
 
     def test_create_recipe_with_existing_tags(self):
-        tag_indian = Tag.objects.create(user=self.user, name='Indian')
+        Tag.objects.create(user=self.user, name='Indian')
         payload = {
             'title': 'Pongal',
             'time_minutes': 60,

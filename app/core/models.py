@@ -32,6 +32,7 @@ class UserManager(BaseUserManager):
 
         return user
 
+
 # admin@example.com / 123
 class User(AbstractBaseUser, PermissionsMixin):
     """User in the system."""
@@ -43,6 +44,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
 
 class Recipe(models.Model):
     """Recipe object."""
